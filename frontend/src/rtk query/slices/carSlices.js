@@ -23,8 +23,11 @@ export const carsApi = createApi({
                 method: "DELETE",
                 url: `cars/${id}`,
             })
+        }),
+        getCarById: builder.query({
+            query: (id) => `cars/${id}`
         })
     }),
 })
 
-export const { useGetCarsQuery, usePostCarMutation, useDeleteCarMutation } = carsApi
+export const { useGetCarsQuery, usePostCarMutation, useDeleteCarMutation, useGetCarByIdQuery } = carsApi

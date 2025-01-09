@@ -65,10 +65,7 @@ app.post("/cars", async (req, res) => {
 app.get("/cars/:id", async (req, res) => {
     let { id } = req.params
     let myCar = await carsModel.findById(id)
-    res.send({
-        message: "Success get by id",
-        data: myCar
-    })
+    res.send(myCar)
 })
 
 // find id and delete car
