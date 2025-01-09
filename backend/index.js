@@ -11,10 +11,10 @@ app.use(cors())
 dotenv.config()
 
 // mongodb ile elaqelendiririk eger elaqelenme ugurludursa 3500 portunda dinlenilir
-mongoose.connect("mongodb+srv://serqiyequluzade:BqLXYbp63WLxMUYu@backenddb.n0d3n.mongodb.net/")
+mongoose.connect(process.env.ConnectionUrl)
 .then(()=>{
     console.log("Connected success!");
-    app.listen(3500, () => {
+    app.listen(process.env.ListenPort, () => {
         console.log("listen port 3500");
     })
 })
@@ -46,11 +46,13 @@ const carsSchema = new mongoose.Schema({
 
 const carsModel = mongoose.model("cars", carsSchema)
 
+// all cars
 app.get("/cars", async (req, res) => {
     let cars = await carsModel.find()
     res.send(cars)
 })
 
+// add car
 app.post("/cars", async (req, res) => {
     await carsModel(req.body).save()
     res.send({
@@ -59,3 +61,21 @@ app.post("/cars", async (req, res) => {
     })
 })
 
+// get by id car
+app.get("/cars/:id", async (req, res) => {
+    let { id } = req.params
+    let myCar = await carsModel.findById(id)
+    res.send({
+        message: "Success get by id",
+        data: myCar
+    })
+})
+
+// find id and delete car
+app.delete("/cars/:id", async (req, res) => {
+    let { id } = req.params
+    await carsModel.findByIdAndDelete(id)
+    res.send({
+        message: "Success delete"
+    })
+})
