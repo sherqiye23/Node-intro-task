@@ -5,7 +5,7 @@ import { NavLink } from 'react-router';
 
 export default function HomePage() {
     let { data, isLoading, refetch } = useGetCarsQuery()
-    let [deleteCar] = useDeleteCarMutation()
+    let [deleteCar] = useDeleteCarMutation(id)
 
     // delete
     const handleDelete = async (id) => {

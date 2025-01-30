@@ -14,9 +14,7 @@ dotenv.config()
 mongoose.connect(process.env.ConnectionUrl)
 .then(()=>{
     console.log("Connected success!");
-    app.listen(process.env.ListenPort, () => {
-        console.log("listen port 3500");
-    })
+    app.listen(process.env.ListenPort, () => console.log("listen port 3500"))
 })
 .catch((err) => console.log("Connection failed: ", err))
 

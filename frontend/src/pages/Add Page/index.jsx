@@ -1,4 +1,3 @@
-import Table from 'react-bootstrap/Table';
 import { useState } from 'react';
 import { useGetCarsQuery, usePostCarMutation } from '../../rtk query/slices/carSlices';
 import { useNavigate } from 'react-router';
